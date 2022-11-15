@@ -23,10 +23,6 @@ body {
     color: rgb(209 213 219/1);
 }
 
-.buttons {
-    display: flex;
-}
-
 #display {
     height: 50px;
     border-color: rgb(124 89 32/1);
@@ -37,61 +33,21 @@ body {
     border-radius: 0.5rem;
 }
 
-.first-column {}
-
-.place-holder {
-    display: flex;
-    justify-content: space-between;
-}
-
-.holder {
-    padding: 1.12rem;
-    margin: 0.34rem;
-}
-
-/* column > row > number */
-.first-row {
+.buttons {
     display: flex;
 }
-            
+
+.holder,          
 .number {
     padding: 1.12rem;
     margin: 0.34rem;
 }
 
-#seven7 {}
-#eight {}
-#nine {}
-
-.second-row {
+.place-holder,
+#row {
     display: flex;
     justify-content: space-between;
 }
-
-#four {}
-#five {}
-#six {}
-
-.third-row {
-    display: flex;
-    justify-content: space-between;
-}
-
-#one {}
-#two {}
-#trhee {}
- 
-.fourth-row {
-    display: flex;
-    justify-content: space-between;
-}
-
-#zero {}
-#point {}
-#equals {} 
-
-/* second-column > operators > operator */
-.second-column {}
 
 #operators {
     display: flex;
@@ -99,11 +55,3 @@ body {
     align-items: center;
     justify-content: space-around;
 }
-
-.operator {}
-
-#clear {}
-#div {}
-#mul {}
-#sub {}
-#add {}
