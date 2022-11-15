@@ -4,7 +4,7 @@
 
 This project was part of the [Odin Project](https://www.theodinproject.com) Foundations Course.
 
-See the live demo [here](#).
+See the live demo [here](https://eszdevstar.github.io/calculator/).
 
 ## Assignment
 
