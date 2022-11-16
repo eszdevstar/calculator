@@ -4,7 +4,8 @@ html {
     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
-body {
+body,
+#row {
     display: flex;
     justify-content: center;
 }
@@ -21,12 +22,17 @@ body {
     font-size: 2.24rem;
     line-height: 1.77rem;
     color: rgb(209 213 219/1);
+    border: solid 2px rgb(124 89 32/1);
 }
 
-#display {
-    height: 50px;
-    border-color: rgb(124 89 32/1);
-    border: solid 2px;
+#display-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 50px;
+    max-width: 280px;
+    flex-wrap: wrap;
+    border: solid 2px rgb(209 213 219/1);
     align-self: stretch;
     text-align: right;
     padding: 0.5rem;
@@ -35,18 +41,13 @@ body {
 
 .buttons {
     display: flex;
+    border: 2px;
 }
 
-.holder,          
+.operator,        
 .number {
     padding: 1.12rem;
     margin: 0.34rem;
-}
-
-.place-holder,
-#row {
-    display: flex;
-    justify-content: space-between;
 }
 
 #operators {
@@ -54,4 +55,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+
+#clear {
+    font-size: 0.7rem;
 }
