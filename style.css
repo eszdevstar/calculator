@@ -1,7 +1,13 @@
 
-html {
+*, *::before, *::after {
     box-sizing: border-box;
     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(17 24 39/1);
 }
 
 body,
@@ -11,6 +17,7 @@ body,
 }
 
 .container {
+    margin-top: 2rem;
     display: flex;
     height: fit-content;
     width: fit-content;
@@ -27,10 +34,11 @@ body,
 
 #display-container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    flex-direction: row-reverse;
     justify-content: flex-end;
-    min-height: 50px;
-    max-width: 280px;
+    min-height: 100px;
+    max-width: 270px;
     flex-wrap: wrap;
     border: solid 2px rgb(209 213 219/1);
     align-self: stretch;
@@ -39,24 +47,29 @@ body,
     border-radius: 0.5rem;
 }
 
+#display-container > div {
+    inline-size: 250px;
+    overflow-wrap: break-word;
+}
+
 .buttons {
     display: flex;
     border: 2px;
 }
 
-.operator,        
-.number {
+.button {
     padding: 1.12rem;
     margin: 0.34rem;
 }
+
+.button:hover {
+    color: rgb(124 89 32/1);
+}
+
 
 #operators {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-}
-
-#clear {
-    font-size: 0.7rem;
 }

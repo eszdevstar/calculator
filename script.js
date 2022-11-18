@@ -1,52 +1,99 @@
+class Calculator {
+    constructor(previousTextElement, currentTextElement) {
+        this.previousTextElement = previousTextElement;
+        this.currentTextElement = currentTextElement;
+        this.clear()
+    }
 
-// Operations
-const add = (a, b) =>  a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => a / b;
-const operator = (op, a, b) => {
-    if(op === '+') {
-        return add(a, b);
-    } else if(op === '-') {
-        return subtract(a, b);
-    } else if(op === '*') {
-        return multiply(a, b);
-    } else if(op === '/') {
-        return divide(a, b);
-    } else {
-        return 'needs a operator';
+    clear() {
+        this.currentOperand = '';
+        this.previousOperand = '';
+        this.operation= undefined;
+    }
+
+    appendNumber(number) {
+        if (number === '.' && this.currentOperand.includes('.')) return;
+        this.currentOperand = this.currentOperand + number;
+    }
+
+    chooseOperation(operation) {
+        if (this.currentOperand === '') return;
+        if (this.previousOperand !== '') {
+            this.compute();
+        }
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
+    }
+
+    compute() {
+        let computation;
+        const prev = parseFloat(this.previousOperand);
+        const current = parseFloat(this.currentOperand);
+        if (isNaN(prev) || isNaN(current)) return;
+        switch (this.operation) {
+            case '+':
+                computation = prev + current;
+                break;
+            case '-':
+                computation = prev - current;
+                break;
+            case '*':
+                computation = prev * current;
+                break;
+            case '/':
+                computation = prev / current;
+                break;
+            default:
+                return;
+        }
+        this.currentOperand = computation;
+        this.operation = undefined;
+        this.previousOperand = '';
+    }
+
+
+    updateDisplay() {
+        this.currentTextElement.innerText = this.currentOperand;
+        if (this.operation != null) {
+            this.previousTextElement.innerText = 
+                `${this.previousOperand}  ${this.operation}`;
+        } else {
+            this.previousTextElement.innerText = '';
+        }
     }
 }
 
-// Logic
-const buttons = document.querySelectorAll('.button');
-const displayContainer = document.getElementById('display-container');
-const erase = () => displayContainer.innerHTML = '';
+const numberButtons = document.querySelectorAll('.number');
+const operationButtons = document.querySelectorAll('.operator');
+const equalsButton = document.querySelector('.equals');
+const clearButton = document.querySelector('.clear');
+const previousTextElement = document.querySelector('.previous');
+const currentTextElement = document.querySelector('.current');
 
-buttons.forEach((button) => {
-    // change button color
-    button.addEventListener('mouseover', () => {
-        button.style.color = 'rgb(124 89 32/1)'
-    });
-    button.addEventListener('mouseout', () => {
-        button.style.color = 'rgb(209 213 219/1)'
-    });
-});
+const calculator = new Calculator(previousTextElement, currentTextElement)
 
-buttons.forEach((button) =>{
-    // Listener to display Numbers
-    button.addEventListener('click', () =>{
-        if(button.textContent === 'Clear'){
-            erase();
-        }else{
-            document.getElementById('display-container').innerHTML +=  (`<div id="${button.textContent}" class="display">${button.textContent}</div>`);
-        }
-
-        const number = document.querySelectorAll('.display');
-        
-        
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.appendNumber(button.innerText);
+        calculator.updateDisplay();
     });
 });
 
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.innerText);
+        calculator.updateDisplay();
+    });
+});
 
+equalsButton.addEventListener('click', button => {
+    calculator.compute();
+    calculator.updateDisplay();
+});
+
+clearButton.addEventListener('click', button => {
+    calculator.clear();
+    calculator.updateDisplay();
+});
 
